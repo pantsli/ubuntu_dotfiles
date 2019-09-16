@@ -1,0 +1,192 @@
+let mapleader="<space>"
+
+" https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+set ignorecase
+set smartcase
+set scrolloff=3         " 3 lines above/below cursor when scrolling
+set showcmd
+set autowrite
+set autoread
+
+" Integrate with system clipboard
+set clipboard=unnamedplus,unnamed
+
+imap ,. <Esc>
+vmap ,. <Esc>
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <leader>h <c-w>h
+nmap <leader>l <c-w>l
+nmap <leader>k <c-w>k
+nmap <leader>j <c-w>j
+
+nmap <leader>g :action GotoDeclaration<cr>
+nmap <leader>b :action Back<cr>
+nmap <leader>f :action Forward<cr>
+
+nmap <leader>t :action GotoFile<cr>
+nmap <leader>c :action GotoClass<cr>
+nmap <leader>ns :action GotoSymbol<cr>
+nmap <leader>nm :action FileStructurePopup<cr>
+nmap <leader>d :action ShowErrorDescription<cr>
+nmap == :action ReformatCode<cr>
+
+" Switches between .cc and .h file!
+nmap <leader>s :action GotoRelated<cr>
+
+" IdeaVim uses 'a' for alt instead of Vim's 'm'
+nmap <a-j> 15gj
+nmap <a-k> 15gk
+
+" Won't work in visual mode (with vmap) for some reason.
+" Use default map of <c-/> for that.
+nmap gcc :action CommentByLineComment<cr>
+
+" https://github.com/startwang/phpstorm_ideavimrc
+*相对行号
+set relativenumber
+*绝对行号
+set number
+
+" === mapping start===
+
+nnoremap <silent>R :source %<cr>
+
+inoremap jj <Esc>`^
+inoremap kj <Esc>`^
+
+nnoremap <leader>e :e!<cr>
+nnoremap <silent> <leader>q :q!<cr>
+nnoremap <leader>w :w<cr>
+
+noremap s <nop>
+noremap sl :set  splitright<cr>:vsplit<cr>
+noremap sh :set nosplitright<cr>:vsplit<cr>
+noremap sj :set  splitbelow<cr>:split<cr>
+noremap sk :set nosplitbelow<cr>:split<cr>
+
+noremap <leader>l <C-w>l
+noremap <leader>h <C-w>h
+noremap <leader>j <C-w>j
+noremap <leader>k <C-w>k
+
+noremap <up> :resize+5<cr>
+noremap <down> :resize-5<cr>
+noremap <left> :vertical resize+5<cr>
+noremap <right> :vertical resize-5<cr>
+
+nnoremap <leader>; zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" Same when moving up and down
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+
+noremap H ^
+noremap L $
+vnoremap H ^
+vnoremap L g_
+
+" Remove search highlight
+nnoremap <leader><cr> :nohlsearch<CR>
+
+" === mapping end ===
+
+*补全行尾
+map <Leader>es <esc>$a;<esc>
+
+*切换tab
+nnoremap gh gT
+nnoremap gl gt
+
+*关闭当前tab
+nnoremap <Leader>tc  :action CloseEditor<CR>
+*关闭所有tab
+nnoremap <Leader>tac :action CloseAllEditors<CR>
+*查找方法
+nnoremap <Leader>ga :action GotoAction<CR>
+*查找类
+nnoremap <Leader>gc :action GotoClass<CR>
+*跳到用到的方法或类
+nnoremap <Leader>gd :action GotoDeclaration<CR>
+*跳到接口
+nnoremap <Leader>gi :action GotoImplementation<CR>
+*跳到测试文件
+nnoremap <Leader>gt :action GotoTest<CR>
+*弹出显示文件路径
+nnoremap <Leader>fp :action ShowFilePath<CR>
+*查找引用了当前方法的文件
+nnoremap <Leader>fu :action FindUsages<CR>
+*显示右键菜单
+nnoremap <Leader>pm :action ShowPopupMenu<CR>
+*运行文件
+nnoremap <Leader>rc :action ChooseRunConfiguration<CR>
+*重命名变量
+nnoremap <Leader>re :action RenameElement<CR>
+
+*搜索任何地方，相当于双击Shift
+nnoremap <Leader>se :action SearchEverywhere<CR>
+*搜索引用了当前变量的地方
+nnoremap <Leader>su :action ShowUsages<CR>
+*搜索方法
+nnoremap <Leader>gs :action GotoSymbol<CR>
+
+*在当前文件中替换
+nnoremap <Leader>fip :action FindInPath<CR>
+
+*在当前文件中替换
+nnoremap <Leader>rf :action Replace<CR>
+
+*在当前文件中查找
+nnoremap <Leader>ff :action Find<CR>
+
+*在路径中替换
+nnoremap <Leader>rip :action ReplaceInPath<CR>
+
+*退到上一次编辑的地方
+nnoremap <Leader>b :action Back<CR>
+
+*弹出当前文件所有函数
+nnoremap <Leader>fs :action FileStructurePopup<CR>
+
+*弹出切换tab
+nnoremap <Leader><Leader>s :action Switcher<CR>
+
+*文件编辑历史
+nnoremap <Leader>sh :action LocalHistory.ShowHistory<CR>
+
+*全屏
+nnoremap <Leader>fc :action ToggleFullScreen<CR>
+
+*调用project
+nnoremap <Leader>ap :action ActivateProjectToolWindow<CR>
+
+*调用Terminal
+nnoremap <Leader>at :action ActivateTerminalToolWindow<CR>
+*在插入模式中使用Ctrl+v粘贴全局剪贴板内容
+inoremap <C-v> <esc>"+pa
+
+*在Visual模式中使用Ctrl+c复制内容到全局剪贴板
+vnoremap <C-c> "+y
+
+*在Visual模式中使用Ctrl+x剪切内容到全局剪贴板
+vnoremap <C-x> "+x
+
+
+*Press `f` to activate AceJump
+nnoremap <Leader><Leader>f :action AceAction<CR>
+
+*Press `F` to activate Target Mode
+nnoremap <Leader><Leader>F :action AceTargetAction<CR>
+
+*Press `g` to activate Line Mode
+nnoremap <Leader><Leader>g :action AceLineAction<CR>
