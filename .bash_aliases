@@ -10,7 +10,7 @@ alias -- -="cd -"
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/code/IR_APP_BASIC"
+alias p="cd ${WORKPATH}"
 alias g="git"
 
 # URL-encode strings
