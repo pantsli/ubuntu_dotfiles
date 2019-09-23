@@ -24,8 +24,8 @@ set wrap
 set wildmenu
 
 if !has('nvim')
-set ttymouse=xterm2
-set ttyscroll=3
+  set ttymouse=xterm2
+  set ttyscroll=3
 endif
 
 set laststatus=2
@@ -72,8 +72,8 @@ set formatoptions-=tc
 " Enable to copy to clipboard for operations like yank, delete, change and put
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 if has('unnamedplus')
-set clipboard^=unnamed
-set clipboard^=unnamedplus
+  set clipboard^=unnamed
+  set clipboard^=unnamedplus
 endif
 
 " Automatically resize screens to be equally the same
@@ -94,8 +94,12 @@ let mapleader="\<space>"
 
 nnoremap <silent>R :source %<cr>
 
+inoremap ,, <Esc>
+vnoremap ,, <Esc>
 inoremap jj <Esc>`^
+vnoremap jj <Esc>`^
 inoremap kj <Esc>`^
+vnoremap kj <Esc>`^
 
 nnoremap <leader>e :e!<cr>
 nnoremap <silent> <leader>q :q!<cr>
@@ -168,214 +172,214 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 
 
-  silent !mkdir -p ~/.config/nvim/tmp/backup
-  silent !mkdir -p ~/.config/nvim/tmp/undo
-  set backupdir=~/.config/nvim/tmp/backup,.
-  set directory=~/.config/nvim/tmp/backup,.
-  if has('persistent_undo')
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+set backupdir=~/.config/nvim/tmp/backup,.
+set directory=~/.config/nvim/tmp/backup,.
+if has('persistent_undo')
   set undofile
   set undodir=~/.config/nvim/tmp/undo,.
-  endif
+endif
 
-  " For toggling
-  noremap <Leader>n :NERDTreeToggle<cr>
-  noremap <Leader>f :NERDTreeFind<cr>
+" For toggling
+noremap <Leader>n :NERDTreeToggle<cr>
+noremap <Leader>f :NERDTreeFind<cr>
 
-  let NERDTreeShowHidden=1
-  let NERDTreeIgnore = [
-    \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
-    \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
-    \ ]
+let NERDTreeShowHidden=1
+let NERDTreeIgnore = [
+      \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+      \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+      \ ]
 
-    " ==================== FZF ====================
-    let g:fzf_command_prefix = 'Fzf'
-    let g:fzf_layout = { 'down': '~20%' }
+" ==================== FZF ====================
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_layout = { 'down': '~20%' }
 
-    " search
-    nmap <C-p> :FzfHistory<cr>
-    imap <C-p> <esc>:<C-u>FzfHistory<cr>
+" search
+nmap <C-p> :FzfHistory<cr>
+imap <C-p> <esc>:<C-u>FzfHistory<cr>
 
-    " search across files in the current directory
-    nmap <C-b> :FzfFiles<cr>
-    imap <C-b> <esc>:<C-u>FzfFiles<cr>
+" search across files in the current directory
+nmap <C-b> :FzfFiles<cr>
+imap <C-b> <esc>:<C-u>FzfFiles<cr>
 
-    let g:rg_command = '
-    \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-    \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
-    \ -g "!{.git,node_modules,vendor}/*" '
+let g:rg_command = '
+      \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+      \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+      \ -g "!{.git,node_modules,vendor}/*" '
 
-    command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-        \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-        \   <bang>0 ? fzf#vim#with_preview('up:60%')
-        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-        \   <bang>0)
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 
-  " 定义函数，自动插入文件头
-  autocmd BufNewFile *.py,*.cc,*.sh,*.java exec ":call SetTitle()"
+" 定义函数，自动插入文件头
+autocmd BufNewFile *.py,*.cc,*.sh,*.java exec ":call SetTitle()"
 func! SetTitle()
   if &filetype == 'python'
-  call setline(1, "\#!/usr/bin/env python3")
-  call setline(2, "\# -*- coding:utf-8 -*-")
-  normal G
-  normal o
-  normal o
-  call setline(5, "if __name__ == '__main__':")
-  call setline(6, "    pass")
+    call setline(1, "\#!/usr/bin/env python3")
+    call setline(2, "\# -*- coding:utf-8 -*-")
+    normal G
+    normal o
+    normal o
+    call setline(5, "if __name__ == '__main__':")
+    call setline(6, "    pass")
   elseif &filetype == 'sh'
-  call setline(1, "#!/usr/bin/env bash")
-  normal G
-  normal o
-  normal o
+    call setline(1, "#!/usr/bin/env bash")
+    normal G
+    normal o
+    normal o
   endif
-  endfunc
+endfunc
 
-  " Open Startify
-  map <LEADER>st :Startify<CR>
+" Open Startify
+map <LEADER>st :Startify<CR>
 
 
-  " Useful commands
-  nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
+" Useful commands
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
-  " color
-  syntax enable
-  set t_Co=256
-  set background=dark
-  let g:molokai_original = 1
-  let g:rehash256 = 1
-  colorscheme molokai
+" color
+syntax enable
+set t_Co=256
+set background=dark
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 
-  " tagbar  setting
-  let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-  let g:tagbar_ctags_bin = 'ctags'
-  let g:tagbar_autofocus = 1
-  let Tlist_Show_One_File = 1
-  let Tlist_Exit_OnlyWindow = 1
-  let Tlist_Use_Right_Window = 1
+" tagbar  setting
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let g:tagbar_ctags_bin = 'ctags'
+let g:tagbar_autofocus = 1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
 
-  map<F3> :TagbarToggle<cr>
-  " 启动时自动focus
-  let g:tagbar_autofocus = 1
-  nnoremap <F5> :UndotreeToggle<cr>
+map<F3> :TagbarToggle<cr>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
+nnoremap <F5> :UndotreeToggle<cr>
 
-  " ===  nerdcommenter start
-  " Add spaces after comment delimiters by default
-  let g:NERDSpaceDelims = 1
+" ===  nerdcommenter start
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
-  " Use compact syntax for prettified multi-line comments
-  let g:NERDCompactSexyComs = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 
-  " Align line-wise comment delimiters flush left instead of following code indentation
-  let g:NERDDefaultAlign = 'left'
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
-  " Set a language to use its alternate delimiters by default
-  let g:NERDAltDelims_java = 1
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
 
-  " Add your own custom formats or override the defaults
-  let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
-  " Allow commenting and inverting empty lines (useful when commenting a region)
-  let g:NERDCommentEmptyLines = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
 
-  " Enable trimming of trailing whitespace when uncommenting
-  let g:NERDTrimTrailingWhitespace = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
-  " Enable NERDCommenterToggle to check all selected lines is commented or not
-  let g:NERDToggleCheckAllLines = 1
-  " ===  nerdcommenter end
-  " === vim-go start
-  let g:go_fmt_fail_silently = 1
-  let g:go_fmt_command = "goimports"
-  let g:go_debug_windows = {
-    \ 'vars':  'leftabove 35vnew',
-    \ 'stack': 'botright 10new',
-    \ }
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+" ===  nerdcommenter end
+" === vim-go start
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+let g:go_debug_windows = {
+      \ 'vars':  'leftabove 35vnew',
+      \ 'stack': 'botright 10new',
+      \ }
 
-    let g:go_test_prepend_name = 1
-    let g:go_list_type = "quickfix"
-    let g:go_auto_type_info = 0
-    let g:go_auto_sameids = 0
+let g:go_test_prepend_name = 1
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
 
-    let g:go_null_module_warning = 0
-    let g:go_echo_command_info = 1
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
 
-    let g:go_autodetect_gopath = 1
-    let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-    let g:go_metalinter_enabled = ['vet', 'golint']
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
 
-    let g:go_highlight_space_tab_error = 0
-    let g:go_highlight_array_whitespace_error = 0
-    let g:go_highlight_trailing_whitespace_error = 0
-    let g:go_highlight_extra_types = 0
-    let g:go_highlight_build_constraints = 1
-    let g:go_highlight_types = 0
-    let g:go_highlight_operators = 1
-    let g:go_highlight_format_strings = 0
-    let g:go_highlight_function_calls = 0
-    let g:go_gocode_propose_source = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
 
-    let g:go_modifytags_transform = 'camelcase'
-    let g:go_fold_enable = []
+let g:go_modifytags_transform = 'camelcase'
+let g:go_fold_enable = []
 
-    nmap <C-g> :GoDecls<cr>
-    imap <C-g> <esc>:<C-u>GoDecls<cr>
+nmap <C-g> :GoDecls<cr>
+imap <C-g> <esc>:<C-u>GoDecls<cr>
 
 
-    " run :GoBuild or :GoTestCompile based on the go file
-    function! s:build_go_files()
-    let l:file = expand('%')
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
   if l:file =~# '^\f\+_test\.go$'
-call go#test#Test(0, 1)
+    call go#test#Test(0, 1)
   elseif l:file =~# '^\f\+\.go$'
-call go#cmd#Build(0)
+    call go#cmd#Build(0)
   endif
-  endfunction
+endfunction
 
 
-  augroup go
+augroup go
   autocmd!
 
   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
   autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
-autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
 
-autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
+  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
   autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
-autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
 
   autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
   autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
   autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+  autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
 
-autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
 
   " I like these more!
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-  augroup END
-  " === vim-go start
-  " === vim-easy-align start
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
+augroup END
+" === vim-go end
+" === vim-easy-align start
+" Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-  " === vim-easy-align end
-  " === autoformat start
-  " au BufWrite * :Autoformat
-  autocmd FileType python noremap <leader>p :Autoformat<cr>
-  " === autoformat end
+" === vim-easy-align end
+" === autoformat start
+" au BufWrite * :Autoformat
+autocmd FileType python noremap <leader>p :Autoformat<cr>
+" === autoformat end
 
 " === indentLine start
 let g:indentLine_char = '│'
@@ -388,22 +392,22 @@ autocmd WinEnter * silent! unmap <LEADER>ig
 "http://vimawesome.com/plugin/rainbow-parentheses-vim   花里胡哨的彩虹括号^_^
 "http://www.wklken.me/posts/2015/06/07/vim-plugin-rainbowparentheses.html
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 
 " 不加入这行, 防止黑色括号出现, 很难识别
 " \ ['black',       'SeaGreen3'],
@@ -433,19 +437,19 @@ nmap ss <Plug>(easymotion-s2)
 "##### auto fcitx  ###########
 let g:input_toggle = 1
 function! Fcitx2en()
-    let s:input_status = system("fcitx-remote")
-    if s:input_status == 2
-        let g:input_toggle = 1
-        let l:a = system("fcitx-remote -c")
-    endif
+  let s:input_status = system("fcitx-remote")
+  if s:input_status == 2
+    let g:input_toggle = 1
+    let l:a = system("fcitx-remote -c")
+  endif
 endfunction
 
 function! Fcitx2zh()
-    let s:input_status = system("fcitx-remote")
-    if s:input_status != 2 && g:input_toggle == 1
-        let l:a = system("fcitx-remote -o")
-        let g:input_toggle = 0
-    endif
+  let s:input_status = system("fcitx-remote")
+  if s:input_status != 2 && g:input_toggle == 1
+    let l:a = system("fcitx-remote -o")
+    let g:input_toggle = 0
+  endif
 endfunction
 
 set ttimeoutlen=150
@@ -480,5 +484,5 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 " === coc.nvim start
 
-  " === plugins end ===
+" === plugins end ===
 
