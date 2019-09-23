@@ -1,4 +1,7 @@
-let mapleader="<space>"
+let mapleader=" "
+set surround
+set multiple-cursors
+set commentary
 
 " https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
 set ignorecase
@@ -11,8 +14,8 @@ set autoread
 " Integrate with system clipboard
 set clipboard=unnamedplus,unnamed
 
-imap ,. <Esc>
-vmap ,. <Esc>
+imap ,, <Esc>
+vmap ,, <Esc>
 
 " Use Q for formatting the current paragraph (or visual selection)
 vmap Q gq
@@ -59,10 +62,14 @@ set number
 
 " === mapping start===
 
-nnoremap <silent>R :source %<cr>
+nnoremap R :source ~/.ideavimrc<cr>
+
+inoremap ,, <Esc>
+vnoremap ,, <Esc>
 
 inoremap jj <Esc>`^
 inoremap kj <Esc>`^
+
 
 nnoremap <leader>e :e!<cr>
 nnoremap <silent> <leader>q :q!<cr>
@@ -78,11 +85,6 @@ noremap <leader>l <C-w>l
 noremap <leader>h <C-w>h
 noremap <leader>j <C-w>j
 noremap <leader>k <C-w>k
-
-noremap <up> :resize+5<cr>
-noremap <down> :resize-5<cr>
-noremap <left> :vertical resize+5<cr>
-noremap <right> :vertical resize-5<cr>
 
 nnoremap <leader>; zz
 nnoremap n nzzzv
@@ -155,7 +157,7 @@ nnoremap <Leader>rip :action ReplaceInPath<CR>
 *退到上一次编辑的地方
 nnoremap <Leader>b :action Back<CR>
 
-*弹出当前文件所有函数
+*弹出当前文所有函数
 nnoremap <Leader>fs :action FileStructurePopup<CR>
 
 *弹出切换tab
@@ -172,21 +174,3 @@ nnoremap <Leader>ap :action ActivateProjectToolWindow<CR>
 
 *调用Terminal
 nnoremap <Leader>at :action ActivateTerminalToolWindow<CR>
-*在插入模式中使用Ctrl+v粘贴全局剪贴板内容
-inoremap <C-v> <esc>"+pa
-
-*在Visual模式中使用Ctrl+c复制内容到全局剪贴板
-vnoremap <C-c> "+y
-
-*在Visual模式中使用Ctrl+x剪切内容到全局剪贴板
-vnoremap <C-x> "+x
-
-
-*Press `f` to activate AceJump
-nnoremap <Leader><Leader>f :action AceAction<CR>
-
-*Press `F` to activate Target Mode
-nnoremap <Leader><Leader>F :action AceTargetAction<CR>
-
-*Press `g` to activate Line Mode
-nnoremap <Leader><Leader>g :action AceLineAction<CR>
