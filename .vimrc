@@ -34,7 +34,7 @@ set encoding=utf-8           " Set default encoding to UTF-8
 set mouse=a                  "  Enable mouse mode
 set noerrorbells             " No beeps
 set number                   " Show line numbers
-set norelativenumber
+set relativenumber
 set showcmd                  " Show me what I'm typing
 set noswapfile               " Don't use swapfile
 set nobackup                 " Don't create annoying backup files
@@ -104,6 +104,8 @@ vnoremap kj <Esc>`^
 nnoremap <leader>e :e!<cr>
 nnoremap <silent> <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
+nnoremap <silent>[b :bprevious<cr>
+nnoremap <silent>[n :bnext<cr>
 
 noremap s <nop>
 noremap sl :set  splitright<cr>:vsplit<cr>

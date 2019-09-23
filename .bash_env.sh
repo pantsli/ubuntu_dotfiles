@@ -25,3 +25,5 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH
 
 export TERM=screen-256color
+
+export WORKPATH=$HOME/code/IR_APP_BASIC
