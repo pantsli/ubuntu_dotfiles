@@ -14,9 +14,9 @@ set scrolloff=5
 set list
 set listchars=tab:⇥\ ,extends:❯,precedes:❮,trail:.,nbsp:~
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 set pastetoggle=<F2>
 set cursorline
@@ -34,7 +34,7 @@ set encoding=utf-8           " Set default encoding to UTF-8
 set mouse=a                  "  Enable mouse mode
 set noerrorbells             " No beeps
 set number                   " Show line numbers
-set relativenumber
+set norelativenumber
 set showcmd                  " Show me what I'm typing
 set noswapfile               " Don't use swapfile
 set nobackup                 " Don't create annoying backup files
@@ -97,13 +97,13 @@ nnoremap <silent>R :source %<cr>
 inoremap ,, <Esc>
 vnoremap ,, <Esc>
 inoremap jj <Esc>`^
-vnoremap jj <Esc>`^
 inoremap kj <Esc>`^
 vnoremap kj <Esc>`^
 
 nnoremap <leader>e :e!<cr>
 nnoremap <silent> <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
+inoremap <leader>w <Esc>:w<cr>
 nnoremap <silent>[b :bprevious<cr>
 nnoremap <silent>[n :bnext<cr>
 
