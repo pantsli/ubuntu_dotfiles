@@ -107,6 +107,15 @@ inoremap <leader>w <Esc>:w<cr>
 nnoremap <silent>[b :bprevious<cr>
 nnoremap <silent>[n :bnext<cr>
 
+noremap te :tabe<cr>
+noremap tn :tabnext<cr>
+noremap tp :tabprevious<cr>
+noremap tc :tabclose<cr>
+noremap to :tabo<cr>
+noremap tl :tabs<cr>
+noremap tmh :-tabmove<cr>
+noremap tml :+tabmove<cr>
+
 noremap s <nop>
 noremap sl :set  splitright<cr>:vsplit<cr>
 noremap sh :set nosplitright<cr>:vsplit<cr>
@@ -122,6 +131,15 @@ noremap <up> :resize+5<cr>
 noremap <down> :resize-5<cr>
 noremap <left> :vertical resize+5<cr>
 noremap <right> :vertical resize-5<cr>
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Rotate screens
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
 
 nnoremap <leader>; zz
 nnoremap n nzzzv
