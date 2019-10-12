@@ -1,0 +1,57 @@
+[user]
+	name = litong.pan
+	email = litong.pan@rtimeman.com
+[credential]
+	helper = store
+[core]
+	quotepath = false
+	filemode = false
+	autocrlf = input
+	safecrlf = true
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile=/home/ts/.gitignore_global
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	pl = pull
+	ph = push
+    st = status -sb
+	ci = commit
+	all = commit -am
+	br = branch
+	co = checkout
+	di = diff
+	dic = diff --cached
+	lg = log -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+	# Show files ignored by git:
+	ign = ls-files -o -i --exclude-standard
+	shoot = push origin --delete
+	unstage = reset HEAD --
+	prev = checkout -
+	discard = checkout --
