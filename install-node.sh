@@ -1,4 +1,4 @@
-#!/usr/bin bash
+#!/usr/bin/env bash
 
 # 需要root权限
 curl -sL install-node.now.sh/lts | bash

@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
+set -e
 
 echo "===> Start!"
 
 echo "Create links ... "
 
-ln -sf ${PWD}/.ideavimrc ~/
-ln -sf ${PWD}/.tmux.conf ~/
-ln -sf ${PWD}/.gitconfig ~/
-ln -sf ${PWD}/.gitignore_global ~/
-ln -sf ${PWD}/.bash_aliases ~/
-ln -sf ${PWD}/.bash_env.sh ~/
-ln -sf ${PWD}/.bash_func.sh ~/
+ln -sfn ${PWD}/.ideavimrc ~/
+ln -sfn ${PWD}/.tmux.conf ~/
+ln -sfn ${PWD}/.gitconfig ~/
+ln -sfn ${PWD}/.gitignore_global ~/
+ln -sfn ${PWD}/.bash_aliases ~/
+ln -sfn ${PWD}/.bash_env.sh ~/
+ln -sfn ${PWD}/.bash_func.sh ~/
 
 echo "Set correct timezone ... "
 # Set correct timezone
 timedatectl set-timezone Asia/Shanghai
 
 echo "Install vim ..."
-sh install-vim.sh
+./install-vim.sh
 
 # echo "update bashrc ..."
-sh update-bashrc.sh
-
-source ~/.bashrc
+./update-bashrc.sh
 
 echo "===> Done!"
