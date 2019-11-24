@@ -11,7 +11,7 @@ set hlsearch
 exec "nohlsearch"
 
 set scrolloff=5
-set list
+" set list
 set listchars=tab:⇥\ ,extends:❯,precedes:❮,trail:.,nbsp:~
 
 set tabstop=4
@@ -86,11 +86,16 @@ autocmd BufEnter * silent! lcd %:p:h
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" 退出插入模式指定类型的文件自动保存
+au InsertLeave *.go,*.sh,*.php write
+" 设置 vimrc 修改保存后立刻生效，不用在重新打开
+" 建议配置完成后将这个关闭
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " === setting end ===
 
 
 " === mapping start===
-let mapleader="\<space>"
+let mapleader=";"
 
 nnoremap <silent>R :source %<cr>
 
@@ -122,15 +127,18 @@ noremap sh :set nosplitright<cr>:vsplit<cr>
 noremap sj :set  splitbelow<cr>:split<cr>
 noremap sk :set nosplitbelow<cr>:split<cr>
 
-noremap <leader>l <C-w>l
-noremap <leader>h <C-w>h
-noremap <leader>j <C-w>j
-noremap <leader>k <C-w>k
+noremap <space>l <C-w>l
+noremap <space>h <C-w>h
+noremap <space>j <C-w>j
+noremap <space>k <C-w>k
 
 noremap <up> :resize+5<cr>
 noremap <down> :resize-5<cr>
 noremap <left> :vertical resize+5<cr>
 noremap <right> :vertical resize-5<cr>
+noremap <leader>h <C-w>\|
+noremap <leader>j <C-w>_
+noremap <leader>k <C-w>=
 
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
@@ -154,6 +162,6 @@ vnoremap H ^
 vnoremap L g_
 
 " Remove search highlight
-nnoremap <leader><cr> :nohlsearch<CR>
+nnoremap <space><cr> :nohlsearch<CR>
 
 " === mapping end ===

@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 timedatectl set-timezone Asia/Shanghai
 
 # nodejs环境变量
-export NODE_HOME=$HOME/develop/node
+export NODE_HOME=/usr/local/node
 export PATH=$PATH:$NODE_HOME/bin
 export NODE_PATH=$NODE_HOME/lib/node_modules
 
@@ -15,9 +15,9 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --userconfig=$HOME/.cnpmrc"
 
 # go 环境变量
-export GOROOT=$HOME/go/go1.12.7
-export GOPATH=$HOME/go
-export PATH=$GOROOT/bin:$PATH
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/code/gocode
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 export ROBOT_DATA_PREFIX=$HOME
 
@@ -26,4 +26,4 @@ export LD_LIBRARY_PATH
 
 export TERM=screen-256color
 
-export WORKPATH=$HOME/code/IR_APP_BASIC
+export WORKPATH=$HOME/code/gocode/src/ts.go

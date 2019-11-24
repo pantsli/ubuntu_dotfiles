@@ -18,9 +18,9 @@ echo " Set correct timezone ... "
 timedatectl set-timezone Asia/Shanghai
 
 echo "install vim ..."
-./install-vim.sh
+./init-vim.sh
 
 # echo "update bashrc ..."
-./update_bashrc.sh
+./update-bashrc.sh
 
 echo " ===> Done!"
