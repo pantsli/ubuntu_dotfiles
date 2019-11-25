@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/bin/bash
 set -e
 
 VIM_PLUG_FILE="${HOME}/.vim/autoload/plug.vim"

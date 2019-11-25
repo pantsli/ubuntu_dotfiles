@@ -1,7 +1,7 @@
 # Set correct lang
 export LC_ALL=en_US.UTF-8
 # Set correct timezone
-# timedatectl set-timezone Asia/Shanghai
+timedatectl set-timezone Asia/Shanghai
 
 # nodejs环境变量
 export NODE_HOME=/usr/local/node
